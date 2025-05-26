@@ -1,6 +1,6 @@
 # Expresiones Regulares
 
-## Nom i cognoms
+## Tomàs Lloret Martínez
 
 ## Tratamiento de ficheros de notas
 
