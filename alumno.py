@@ -46,6 +46,18 @@ class Alumno:
 import re
 
 def leeAlumnos(ficAlumnos):
+    '''
+    Con esta funcion leemos el fichero de texto alumnos.txt y extraemos
+    un diccionario con los datos de los alumnos que hay dentro del documento.
+
+    >>> alumnos = leeAlumnos('alumnos.txt')
+    >>> for alumno in alumnos:
+    ...     print(alumnos[alumno])
+    ...
+    171     Blanca Agirrebarrenetse 9.5
+    23      Carles Balcells de Lara 4.9
+    68      David Garcia Fuster     7.0
+    '''
     expr_id = r"(?P<id>\d+)\s+"
     expr_nom = r"(?P<nom>[\w\s]+?)\s+"
     expr_notes = r"(?P<notes>[\d.]+)\s"
@@ -58,9 +70,20 @@ def leeAlumnos(ficAlumnos):
     # \s* : Espacio en blanco opcional
 
     expresion = re.compile(expr_id + expr_nom + expr_notes) #r: regular s: space d: digit + es una o mas veces, *
+    students = {}
 
     with open(ficAlumnos, 'rt') as fpAlumnos:
         for linea in fpAlumnos:
             match = expresion.search(linea)
             if match is not None:
-                print(match['id'], match['nom'], match['notes'])
+                name = match['nom']
+                id = int(match['id'])
+                marks = [float(mark) for mark in match['notes'].split()]
+                students[name] = Alumno(name,id,marks)
+    return students
+
+print(leeAlumnos('alumnos.txt'))
+
+if __name__ == "__main__":
+      import doctest
+      doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE)
