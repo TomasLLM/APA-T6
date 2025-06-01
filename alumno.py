@@ -60,7 +60,7 @@ def leeAlumnos(ficAlumnos):
     '''
     expr_id = r"(?P<id>\d+)\s+"
     expr_nom = r"(?P<nom>[\w\s]+?)\s+"
-    expr_notes = r"(?P<notes>[\d.]+)\s"
+    expr_notes = r"(?P<notes>[\d.\s]+)\s*"
     # Expresión regular para leer el fichero de alumnos
     # \s* : Espacio en blanco opcional
     # (?P<id>\d+) : Grupo con nombre id que contiene uno o más dígitos
